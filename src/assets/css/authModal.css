@@ -1,0 +1,138 @@
+.modal-content {
+  position: relative;
+}
+span.close {
+  cursor: pointer;
+  position: absolute;
+  right: -1rem;
+  top: -1rem;
+  font-size: .5rem;
+  font-weight: 500;
+  border: 1px solid;
+  padding: 4px 5px;
+  border-radius: 2rem;
+  color: grey;
+}
+span.close:hover {
+  transform: scale(1.03);
+}
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--titulo-form);
+  text-align: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.form .inputfield {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: var(--titulo-form-input);
+  width: 100%;
+  position: relative;
+}
+.form .inputfield input[name="password"] ~ i {
+  cursor: pointer;
+  position: absolute;
+  bottom: .5rem;
+  right: .5rem;
+}
+
+
+.form .inputfield input[type="password"]::-ms-reveal,
+.form .inputfield input[type="password"]::-ms-clear {
+  display: none;
+}
+.form .inputfield:last-child {
+  margin: 0;
+}
+.form .inputfield input,
+.form .inputfield select  {
+  color: var(--texto-form);
+  outline: none;
+  border: 1px solid var(--gris);
+  font-size: 15px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  width: -webkit-fill-available;
+}
+.form .inputfield input.error-shake {
+  animation: shake 0.3s normal;
+  border-color: #ff6262;
+}
+.form .inputfield input:focus:invalid {
+  border-color: #ff6262;
+}
+.form .inputfield input:focus {
+  color: var(--negro);
+  border: 1px solid #06315c;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.form .inputfield .error {
+  position: absolute;
+  width: 75%;
+  padding: .2rem;
+  top: 4px;
+  right: 0;
+  font-size: 10px;
+  color: white;
+  background-color: #ff6262;
+  border-radius: 5px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.form .inputfield .error::after {
+  content: "";
+  position: absolute;
+  top: 99%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #ff6262 transparent transparent transparent;
+}
+
+.form .inputfield .btn i {
+  margin-left: 3px;
+}
+.form .labels {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8em;
+  font-weight: 1;
+  margin: 20px;
+  margin-bottom: 1.5em;
+  text-align: center;
+
+}
+.form .labels .forgotten-password,
+.form .labels i {
+  cursor: pointer;
+  text-decoration: none;
+  margin: 0;
+}
+.form label {
+  margin-bottom: 10px;
+}
+@media (max-width: 600px) {
+  .btn {
+    width: 100px;
+  }
+}

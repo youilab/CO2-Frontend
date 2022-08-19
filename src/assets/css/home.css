@@ -1,0 +1,46 @@
+.home-img{
+    height: 100vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -2;
+    position: absolute;
+    inset: 0;
+}
+.home-img.layout{
+    background-color: rgba(0, 0, 0, 0.315);
+    z-index: -1;
+}
+
+main {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    transition: all 1s ease;
+    inset: 0;
+}
+
+main .main-text{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    inset: 0;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+main .main-text h1{
+    color: var(--blanco);
+    font-size: xxx-large;
+}
+.main-sign-up button{
+    background: var(--naranja);
+    border-radius: 50px;
+    color: var(--gray);
+    padding: 0.5rem 2rem;
+    border: none;
+    font-size: larger;
+    cursor: pointer;
+    margin: 1rem;
+}
+

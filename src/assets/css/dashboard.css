@@ -1,0 +1,217 @@
+.dashboard-container {
+    display: flex;
+}
+
+aside{
+    width: 400px;
+    height: 100vh;
+    background: navajowhite;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+aside .aside-close-session {
+    align-self: flex-start;
+}
+aside .aside-close-session button{
+    background: none;
+    margin: 1rem;
+    border: none;
+    cursor: pointer;
+    font-size: larger;
+}
+
+aside .profile-picture{
+    width: 70%;
+    position: relative;
+}
+aside .profile-picture img{
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+}
+aside .profile-picture .profile-picture-container{
+    width: 40%;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+aside .profile-picture label{
+    cursor: pointer;
+    color: white;
+}
+aside .profile-picture form{
+    position: absolute;
+    display: flex;
+    bottom: 5%;
+    right: 5%;
+}
+aside .profile-picture form button{
+    color: white;
+
+}
+.profile-picture-change-icon{
+    opacity: .5;
+    transition: all .3s ease;
+}
+.profile-picture-change-icon:hover{
+    opacity: 1;
+}
+
+
+
+aside .profile-name {
+    margin: 1rem;
+    font-size: small;
+    font-family: sans-serif;
+    text-align: center;
+    display: flex;
+    align-items: baseline;
+}
+aside .profile-locations-add{
+    display: flex;
+    flex-direction: column;
+}
+aside .profile-locations-container{
+    margin: 1rem 0;
+    width: 100%;
+    padding: 0 2rem;
+}
+aside .profile-locations-title{
+    display: flex;
+    gap: 0.3rem;
+    margin-bottom: .5rem;
+    align-items: baseline;
+
+}
+aside .profile-locations.responsive-hide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-height: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+    padding: 1rem 8px;
+    /* box-shadow: 7px 9px 20px 0px #6a6a6a; */
+    border: 1px solid #ed8d0054;
+}
+aside .profile-locations-title h2,
+aside .profile-locations-title i{
+    font-size: medium;
+    color: var(--azul);
+}
+
+aside .add-btn{
+    margin: 1rem auto;
+}
+aside .add-btn button{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+@media (max-width: 700px) {
+    aside{
+        width: 70px;
+        transition: all 1s ease;
+    }
+    aside .aside-close-session button{
+        margin: 0;
+    }
+    aside .responsive-hide{
+        display: none;
+    }
+    aside:hover{
+        width: 400px;
+        transition: all 1s ease;
+    }
+    aside:hover .responsive-hide{
+        display: block;
+    }
+    aside:hover .aside-close-session button{
+        margin: 1rem;
+    }
+}
+
+.dashboard-main {
+    width: 100vw;
+    min-height: 100vh;
+    background: var(--azul);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--blanco);
+    justify-content: space-around;
+    text-align: center;
+}
+.dashboard-main .no-sensors {
+    position: absolute;
+    align-self: center;
+    justify-self: center;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.dashboard-main .plane {
+    position: relative;
+    display: flex;
+    margin: 0 auto;
+}
+.dashboard-main .plane img{
+    width: 100%;
+    max-height: 78vh;
+}
+.dashboard-main .sensors-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+}
+.dashboard-main .sensor-img {
+    position: absolute;
+    cursor: pointer;
+}
+
+.custom-tooltip {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 2px solid #c3c3c3;
+    border-radius: 10px;
+}
+.custom-tooltip span {
+  font-weight: bold;
+}
+.sensor-data {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+.sensor-units, .sensor-type{
+    text-align: center;
+}
+.dashboard-main hr{
+    height: 2px;
+    width: 70%;
+    background: white;
+    border: 0;
+}
+.actions-sensors {
+    width: 100%;
+    background: steelblue;
+}
+
+.update-data {
+    width: 100%;
+    background: #181616;
+    padding: 0.5rem;
+}
+.update-data .btn{
+    
+}

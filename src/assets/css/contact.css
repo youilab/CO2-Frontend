@@ -1,0 +1,25 @@
+.contact-container{
+    padding: 0 2rem;
+    background-color: var(--azul-claro);
+}
+.contact-container h1{
+    color: var(--naranja);
+    text-align: center;
+}
+
+.fomr-contact{
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.fomr-contact .inputfield{
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+.fomr-contact .inputfield input, textarea{
+    padding: .5rem 1rem;
+    opacity: .5;
+}

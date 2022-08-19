@@ -1,0 +1,101 @@
+:root{
+    --blanco: rgb(255, 255, 255);
+    --gris: #bebebe;
+    --negro: #1f1f1f;
+    --texto-form:#707070;
+    --titulo-form:hsl(186, 31%, 26%);
+    --titulo-form-input:#509299;
+    --azul: #06315c;
+    --azul-claro: hsl(225, 43%, 50%);
+    --hover: 57%;
+    --naranja: hsl(33, 99%, var(--hover));
+}
+*{
+    box-sizing: border-box;
+}
+body{
+    position: relative;
+    background-color: var(--blanco);
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.hide{
+    display: none !important;
+}
+.btn{
+    cursor: pointer;
+    border-radius: 30pt;
+    outline: none;
+    margin: 0;
+    border: none;
+    padding: 0.5rem 1rem;
+}
+.modal .btn{
+    width: 100%;
+}
+.btn-secundary {
+    margin-top: 10px;
+    background: transparent;
+    color: var(--azul);
+}
+.btn-secundary:hover {
+    color: var(--azul-claro);
+    transition: all ease-out 0.3s;
+  }
+.btn-primary {
+    background: var(--azul);
+    color: var(--blanco);
+    text-align: center;
+    text-decoration: none;
+
+}
+.btn-primary.active {
+    background-color: var(--azul-claro);
+}
+.btn-primary:hover {
+    background-color: var(--azul-claro);
+    transition: all ease-out 0.3s;
+  }
+
+/* Modal */
+.ReactModalPortal > div{
+    opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    transition: opacity .2s ease-in-out;
+    z-index: 1000;
+}
+
+.modal-fondo {
+    background-color: rgba(0, 0, 0, 0.3);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    position: fixed;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+    opacity: 0;
+}
+
+.modal {
+    background: white;
+    border-radius: 5px;
+    color: rgb(51, 51, 51);
+    display: inline;
+    max-height: 620px;
+    max-width: 500px;
+    outline: none;
+    padding: 2rem;
+    border-radius: 1rem;
+}
