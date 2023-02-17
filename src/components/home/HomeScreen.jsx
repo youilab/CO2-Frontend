@@ -27,7 +27,7 @@ export const HomeScreen = () => {
       <main className="container">
         <div className="main-text ">
           <h1 className="animate__animated animate__fadeInDown animate__delay-1s">
-            Proyecto CO2
+            Centinela del Aire
           </h1>
           <div className="main-sign-up animate__animated animate__fadeInDown animate__delay-2s">
             <button id="registrarse" onClick={ ()=> openModal('signup') }>Unete</button>

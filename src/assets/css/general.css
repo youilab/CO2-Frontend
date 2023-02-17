@@ -15,7 +15,7 @@
 }
 body{
     position: relative;
-    background-color: var(--blanco);
+    background-color: var(--negro);
     padding: 0;
     font-family: sans-serif;
 }

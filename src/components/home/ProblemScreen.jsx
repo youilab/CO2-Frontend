@@ -27,7 +27,7 @@ export const ProblemScreen = () => {
         options={{
           background: {
             color: {
-              value: "#fff",
+              value: "#000",
             },
           },
           fullScreen: {
@@ -36,7 +36,7 @@ export const ProblemScreen = () => {
           fpsLimit: 60,
           particles: {
             color: {
-              value: "#000000",
+              value: "#fff",
             },
             collisions: {
               enable: true,

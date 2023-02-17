@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const axiosClient = axios.create({
     //baseURL: 'http://localhost:3005/'
-    //baseURL: 'http://148.207.219.61/co2-bkn'
+   // baseURL: 'http://148.207.219.61/co2-bkn'
 
     baseURL: '/co2-bkn'
 })

@@ -1,6 +1,6 @@
 .contact-container{
     padding: 0 2rem;
-    background-color: var(--azul-claro);
+    /* background-color: var(--azul-claro); */
 }
 .contact-container h1{
     color: var(--naranja);
