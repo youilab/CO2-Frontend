@@ -1,15 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import jwt_decode from "jwt-decode";
+
 import { LineChart, Line, XAxis, YAxis, Tooltip, ReferenceLine, Legend, ResponsiveContainer, Brush  } from 'recharts';
-import {  MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import markerIconPng from "leaflet/dist/images/marker-icon.png"
-import {Icon} from 'leaflet'
-import Swal from 'sweetalert2'
+
 
 
 import moment from 'moment';
+import Loading from '../ui/Loading';
 
 const domain = {
   'um/m3': [0 , 30],
@@ -17,31 +14,39 @@ const domain = {
 }
 
 export const IPIEstacionScreen = () => {
-  const [sensor, setSensor] = useState([]);
-  const [data, setData] = useState([]);
-  const [sensors, setSensors] = useState([]);
+  const sensors = ['1','2','3','4','5','6','7','8','9','10'];
+  const measures = ['pm','co2'];
+  const [sensor, setSensor] = useState(measures[0]);
+  const [sensorData, setSensorData] = useState([]);
   const [measure, setMeasure] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [sensorSelected, setSensorSelected] = useState("")
 
   const getData = async() => {
-    const res=await fetch('http://youilab.ipicyt.edu.mx/api/layers/IPIEstacion')
-    const data = await res.json()
-    setData(data)
+    try {
+      setLoading(true)
+      const res=await fetch(`http://youilab.ipicyt.edu.mx/ipiestacion/${sensorSelected}/${sensor}?last=50`)
+      const {data} = await res.json()
+      console.log({data})
+      if (data.length === 0) {
+        setDataDown(true)
+        return
+      }
+      setSensorData(data)
+      setLoading(false)
+    } catch (error) {
+      setDataDown(true)
+      setLoading(false)
+      console.log(error)
+    }
 
   }
-  const getSensors = ()=> {
-    if (data) {
-      const sensorsList = [...new Set(data.map(item => item.Sensor))]; 
-      setSensors(sensorsList)
-      console.log(sensorsList)
-    }
-  }
+  
 
   useEffect(() => {
     getData()
-  }, []);
-  useEffect(() => {
-    getSensors()
-  }, [data]);
+  }, [sensorSelected, sensor]);
+
 
   
 
@@ -108,21 +113,21 @@ export const IPIEstacionScreen = () => {
     if (downloadType==='hour') {
       const now = moment().unix();
 
-      data = sensor.filter(data => Number( data.Tiempo) >= (now-3600) )
+      data = sensorData.filter(data => Number( data.Tiempo) >= (now-3600) )
       console.log(data);
     }else if (downloadType==='last100'){
-       data = sensor.slice(-100);
+       data = sensorData.slice(-100);
 
       
     }else {
-      data = sensor
+      data = sensorData
     }
 
     if (data.length !== 0){
       e.preventDefault()
       downloadFile({
-        data: JSON.stringify(data),
-        fileName: `${sensor[0].Sensor}_${downloadType}.json`,
+        data: JSON.stringify(sensorData),
+        fileName: `${sensorData[0].Sensor}_${downloadType}.json`,
         fileType: 'text/json',
       })
     }else{
@@ -145,18 +150,25 @@ export const IPIEstacionScreen = () => {
       return csv
   }
   const exportToCSV = e => {
+   
+
+    if (sensorData.length === 0) {
+      setDataDown(true)
+      return
+    }
+
     setDataDown(false)
     let data = []
     let csv 
     if (downloadType==='hour') {
       const now = moment().unix();
 
-      data = sensor.filter(data => Number( data.Tiempo) >= (now-3600) )
+      data = sensorData.filter(d => Number( d.Tiempo) >= (now-3600) )
       data = data.map(v=>{
         
         return {
           ...v,
-          Tiempo:moment.unix(v.Tiempo/1000).format("DD/MM/YYYY HH:mm:ss"),
+          Tiempo:moment.unix(Number(v.Tiempo)/1000).format("DD/MM/YYYY HH:mm:ss"),
           
         }
       })
@@ -165,17 +177,18 @@ export const IPIEstacionScreen = () => {
       console.log(csv)
       
     }else if (downloadType==='last100'){
-      data = sensor.slice(-100);
+      data = sensorData.slice(-100);
       data = data.map(v=>{
         return {
           ...v,
-          Tiempo:moment.unix(v.Tiempo/1000).format("DD/MM/YYYY HH:mm:ss"),
+          Tiempo:moment.unix(Number(v.Tiempo)/1000).format("DD/MM/YYYY HH:mm:ss"),
         }
       })
       csv = createCSV(data)      
     }else {
-      data = sensor
+      data = sensorData
       data = data.map(v=>{
+        console.log(v)
         return {
           ...v,
           Tiempo:moment.unix(v.Tiempo/1000).format("DD/MM/YYYY HH:mm:ss"),
@@ -190,7 +203,7 @@ export const IPIEstacionScreen = () => {
       console.log(csv)
       downloadFile({
         data: csv,
-        fileName: `${sensor[0].Sensor}_${downloadType}.csv`,
+        fileName: `${sensorData[0].Sensor}_${downloadType}.csv`,
         fileType: 'text/csv',
       })
     }else{
@@ -199,10 +212,8 @@ export const IPIEstacionScreen = () => {
   }
 
   const handleSelectSensor = (e) =>{
-    const sensorSelected = data.filter(item => item.Sensor === e.target.value)
-    setSensor(sensorSelected)
+    setSensorSelected(e.target.value)
     setMeasure('')
-    console.log(sensorSelected)
 
   }
 
@@ -238,69 +249,29 @@ export const IPIEstacionScreen = () => {
         {
           sensors.map(sensor=> (
             <option value={sensor} >
-              {sensor}
+               IPIESTACION {sensor}
             </option>)
           )
         }
       </select>
+      <select name="" id="" onChange={(e)=>setSensor(e.target.value)} value={sensor} style={{padding: ".5rem 1rem"}}>
+        {
+          measures.map(m=> (
+            <option value={m} >
+               {m.toUpperCase()}
+            </option>)
+          )
+        }
+      </select>
+      {
+        loading &&
+        <Loading />
+      }
     </div>
     
-    <div className="sensor-data">
-      <div className="sensor-units">
-        <h4>Este sensor mide</h4> 
-        <ul>
-          {
-            sensor.length &&
-            Object.keys(sensor[0]).map(s=>{
-                if (s != 'Sensor' && s != '_id') {
-                  return <li>
-                    <button className='btn  btn-secundary' style={{color:'white'}} onClick={()=>setMeasure(s)}>{s}</button>
-                    </li>
-                }
-            })
-          }
-        </ul>
-        
-      </div>
-    </div>
+   
     <hr />
     <br />
-          {
-             sensor.length &&
-             measure &&
-      <ResponsiveContainer width="80%" height={400} >
-        <LineChart width={800} height={400} data={sensor}>
-          <Line type="monotone" dataKey={measure} stroke="#8884d8" /> 
-          <XAxis sclaeToFit="true" dataKey="Tiempo" tick={CustomizedAxisTick} />
-          <YAxis type="number" domain={['auto', 'auto'] }  dataKey={measure} />
-          <Legend />
-          <Tooltip content={<CustomTooltip />} animationDuration={0}  />
-          <Brush tickFormatter={xAxisTickFormatter} dataKey="Tiempo" startIndex={sensor? Math.round(sensor.length * 0.45) : 1  } />
-        </LineChart>
-
-      </ResponsiveContainer>
-          }
-    {/* {
-            sensor.length &&
-            Object.keys(sensor[0]).map(s=>{
-                if (s != 'Sensor' && s != '_id' && s != 'Tiempo') {
-                  return (
-                    <ResponsiveContainer width="80%" height={400} >
-                      <LineChart width={800} height={400} data={sensor.slice(-100)}>
-                        <Line type="monotone" dataKey={s} stroke="#8884d8" />
-                        <XAxis sclaeToFit="true" dataKey="Tiempo" tick={CustomizedAxisTick} />
-                        <YAxis type="number" domain={['auto', 'auto'] }  dataKey={s} />
-                        <Legend />
-                        <Tooltip content={<CustomTooltip />} animationDuration={0}  />
-                        <Brush tickFormatter={xAxisTickFormatter} dataKey="Tiempo" startIndex={sensor? Math.round(sensor.length * 0.45) : 1  } />
-                      </LineChart>
-
-                    </ResponsiveContainer>
-                  )
-                }
-            })
-    } */}
-    
 
 
     <div className="actions">
@@ -312,9 +283,9 @@ export const IPIEstacionScreen = () => {
       <select name="" id="" onChange={handleChangeDownload} style={{padding: ".5rem 1rem"}}>
         <option value="all" defaultValue>Todos los datos</option>
         <option value="hour">Ultima Hora</option>
-        <option value="last100">Ultimos 100 registros</option>
+        {/* <option value="last100">Ultimos 100 registros</option> */}
       </select>
-      <button onClick={handleDownload} className="btn btn-primary" style={{background:" var(--titulo-form-input)"}} >
+      <button disabled={loading} onClick={handleDownload} className="btn btn-primary" style={{background:" var(--titulo-form-input)"}} >
         Descargar
       </button>
     </div>

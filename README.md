@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Proyecto React con Backend en Node.js
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una aplicación web desarrollada con React para el frontend y Node.js para el backend.
 
-## Available Scripts
+## Iniciar el Proyecto React
 
-In the project directory, you can run:
+Para iniciar el proyecto de React, sigue estos pasos:
+
+### 1. Instalar Dependencias
+
+Antes de comenzar, asegúrate de tener Node.js y npm instalados en tu sistema. Luego, en la raíz del proyecto, ejecuta el siguiente comando para instalar las dependencias necesarias:
+
+
+
+### `npm install`
+
+### 2. Iniciar el Servidor de Desarrollo
+
+Una vez que todas las dependencias se hayan instalado correctamente, puedes iniciar el servidor de desarrollo de React con el siguiente comando:
+
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Esto iniciará el servidor de desarrollo y abrirá automáticamente la aplicación en tu navegador predeterminado. Si no se abre automáticamente, puedes acceder a la aplicación en [http://localhost:3000](http://localhost:3000).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Iniciar el Backend Node.js
 
-### `npm test`
+El backend de la aplicación está desarrollado en Node.js. A continuación, se describen los pasos para iniciar el servidor de Node.js:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1. Instalar Dependencias
 
-### `npm run build`
+En la carpeta del backend (centinela-del-aire-back), ejecuta el siguiente comando para instalar las dependencias necesarias:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `npm install`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. Iniciar el Servidor de Node.js
 
-### `npm run eject`
+Una vez que las dependencias se hayan instalado correctamente, puedes iniciar el servidor de Node.js. Puedes utilizar nodemon para reiniciar automáticamente el servidor cuando se realicen cambios en los archivos. Ejecuta el siguiente comando:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `node app.js`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Esto iniciará el servidor de Node.js y estará escuchando en el puerto especificado en el archivo de configuración.
 
-## Learn More
+¡Listo! Ahora tienes el proyecto funcionando correctamente.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

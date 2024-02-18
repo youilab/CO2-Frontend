@@ -98,7 +98,7 @@ export const Aside = () => {
                   //  ? `http://localhost:3005/avatars/${user._id}.jpeg`
                   // : "./assets/img/profile.jpg"
                   //Production mode
-                  ? `http://148.207.219.61/co2-bkn/avatars/${user._id}.jpeg`
+                  ? `https://148.207.219.61/co2-bkn/avatars/${user._id}.jpeg`
                   : "./assets/img/profile.jpg"
               }
               alt=""
