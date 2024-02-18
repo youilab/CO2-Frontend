@@ -2,6 +2,9 @@
 
 Este proyecto es una aplicación web desarrollada con React para el frontend y Node.js para el backend.
 
+puedes consultar la documentación del api en:
+https://documenter.getpostman.com/view/19825496/2sA2r3b6tY
+
 ## Iniciar el Proyecto React
 
 Para iniciar el proyecto de React, sigue estos pasos:
